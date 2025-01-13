@@ -1,5 +1,5 @@
 import { data } from "./data";
-import { WeatherDetailType } from "@/utils/types/WeatherDetailType";
+import { WeatherDetailInterface } from "../../mongoose/weather/interface";
 import { findByLoc } from "../../mongoose/weather/services";
 
 export const resolvers = {
