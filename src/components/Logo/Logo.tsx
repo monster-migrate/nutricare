@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Logo({
@@ -20,7 +19,7 @@ export default function Logo({
     <Link href={link_to + ""}>
       <div className={className + " " + `flex items-center justify-center`}>
         {" "}
-        <Image
+        <img
           alt="toddo:implement alt property before its too late"
           className={`${height} ${width} text-blue-500`}
           src={src}
