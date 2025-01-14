@@ -1,43 +1,48 @@
 import gql from "graphql-tag";
 
 export const typeDefs = gql`
-  type WeatherDetailType {
-    latitude: Float!
-    longitude: Float!
-    generationtime_ms: Float!
-    utc_offset_seconds: Int!
-    timezone: String!
-    timezone_abbreviation: String!
-    elevation: Float!
-    current_units: WeatherUnits!
-    current: WeatherCurrent!
+  enum UserRole {
+    Admin
+    Pantry
+    Delivery
   }
 
-  type WeatherUnits {
-    time: String!
-    interval: String!
-    temperature_2m: String!
-    apparent_temperature: String!
-    is_day: Int!
-    precipitation: String!
-    cloud_cover: String!
-    wind_speed_10m: String!
-    wind_direction_10m: String!
+  type User {
+    name: String!
+    email: String!
+    password: String!
+    phone: String!
+    role: UserRole!
+    resume: String
+    notes: String
+    address: String
+    createdAt: String!
+    updatedAt: String!
   }
-
-  type WeatherCurrent {
-    time: String!
-    interval: Int!
-    temperature_2m: Float!
-    apparent_temperature: Float!
-    is_day: Int!
-    precipitation: Float!
-    cloud_cover: Float!
-    wind_speed_10m: Float!
-    wind_direction_10m: Float!
+  type Mutation {
+    createUser(
+      name: String!
+      email: String!
+      password: String!
+      phone: String!
+      role: UserRole!
+      address: String
+      resume: String
+      notes: String
+    ): User
+    updateUser(
+      email: String!
+      name: String
+      password: String
+      phone: String
+      address:String
+      role: UserRole
+    ): User
+    deleteUser(email: String!): User
   }
 
   type Query {
-    getWeatherDetails(latitude: Float!, longitude: Float!): WeatherDetailType!
+    getUser(email: String!): User
+    getUsers: [User!]
   }
 `;
